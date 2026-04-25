@@ -11,6 +11,8 @@ import toast from "react-hot-toast"
 import {motion} from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { submitError, submitStart, submitSuccess } from "@/redux/slices/form.slice"
+import { apiService } from "@/services/api.services";
+
 export default function ContactForm() {
 const dispatch = useDispatch();
 const { loading, error, success } = useSelector((state) => state.form);
@@ -36,13 +38,8 @@ const { loading, error, success } = useSelector((state) => state.form);
     const onSubmit = async(data) => {
         try {
             dispatch(submitStart());
-            const  response = await fetch("/api/contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
+
+            const  response = await apiService.createContact(data);
             console.log("Response is:",response);
 
             toast.success("Form Submitted Successfully");
@@ -87,7 +84,7 @@ const { loading, error, success } = useSelector((state) => state.form);
   viewport={{ once: false }}
 >
   {/* <Input ... /> */}
-                                    <Input {...field} placeholder="Name" className="bg-[#111] py-8  px-6 border-none" />
+                                    <Input {...field} placeholder="Name" className="bg-[#252525]  py-8  px-6 border-none" />
                                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
 </motion.div>
                                 </Field>
@@ -108,7 +105,7 @@ const { loading, error, success } = useSelector((state) => state.form);
             transition={{ duration: 0.4 }}
             viewport={{ once: false }}
 >
-                                    <Input {...field} placeholder="Location" className="bg-[#111] py-8  px-6 border-none" />
+                                    <Input {...field} placeholder="Location" className="bg-[#252525] py-8  px-6 border-none" />
                                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                     </motion.div>
                                 </Field>
@@ -132,7 +129,7 @@ const { loading, error, success } = useSelector((state) => state.form);
                                         transition={{ duration: 0.4 }}
                                         viewport={{ once: false }}
                                     >
-                                        <Input {...field} placeholder="Official Email Address" className="bg-[#111] py-8  px-6 border-none" />
+                                        <Input {...field} placeholder="Official Email Address" className="bg-[#252525] py-8  px-6 border-none" />
                                     </motion.div>
                                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                 </Field>
@@ -153,7 +150,7 @@ const { loading, error, success } = useSelector((state) => state.form);
                                             transition={{ duration: 0.4 }}
                                             viewport={{ once: false }}
                                         >
-                                            <Input {...field} placeholder="Phone Number" className="bg-[#111] py-8 px-6 border-none" />
+                                            <Input {...field} placeholder="Phone Number" className="bg-[#252525] py-8 px-6 border-none" />
                                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                         </motion.div>
                                 </Field>
@@ -177,7 +174,7 @@ const { loading, error, success } = useSelector((state) => state.form);
                                             transition={{ duration: 0.4 }}
                                             viewport={{ once: false }}
                                         >
-                                    <Input {...field} placeholder="Job Title" className="bg-[#111] py-8  px-6 border-none" />
+                                    <Input {...field} placeholder="Job Title" className="bg-[#252525] py-8  px-6 border-none" />
                                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                     </motion.div>
                                 </Field>
@@ -201,7 +198,7 @@ const { loading, error, success } = useSelector((state) => state.form);
                                         <Input
                                             {...field}
                                             placeholder="Organization"
-                                            className="bg-[#111] py-8  px-6 border-none focus:ring-2 focus:ring-orange-700 focus:outline-none"
+                                            className="bg-[#252525] py-8  px-6 border-none focus:ring-2 focus:ring-orange-700 focus:outline-none"
                                         />
                                     </motion.div>
                                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
@@ -268,7 +265,7 @@ const { loading, error, success } = useSelector((state) => state.form);
                                             viewport={{ once: false }}
                                         >
 
-                            <Textarea {...field} placeholder="Please Describe Your Requirement" className="bg-[#111] border-none h-40" />
+                            <Textarea {...field} placeholder="Please Describe Your Requirement" className="bg-[#252525] border-none h-40" />
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                         </motion.div>
                         </Field>
@@ -293,7 +290,7 @@ const { loading, error, success } = useSelector((state) => state.form);
 
                             <select
                                 {...field}
-                                className="bg-[#111] w-full py-4 px-4 text-white outline-none"
+                                className="bg-[#252525] w-full py-4 px-4 text-white outline-none"
                                 >
                                 <option value="">—Please choose an option—</option>
                                 <option>Google</option>
@@ -352,6 +349,15 @@ const { loading, error, success } = useSelector((state) => state.form);
                 </div>
 
             </form>
+            {error && (
+  <p className="text-red-500 text-center">{error}</p>
+)}
+
+{success && (
+  <p className="text-green-500 text-center">
+    Form submitted successfully!
+  </p>
+)}
         </div>
     )
 }
