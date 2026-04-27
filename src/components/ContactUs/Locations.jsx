@@ -197,7 +197,7 @@ const Locations = () => {
   }, [selectedLocation]);
   return (
     <div className='md:px-8 lg:px-16 px-6 md:py-10 lg:py-16 py-8 flex flex-col items-center gap-9'>
-      <div className='text-4xl leading-8 flex flex-col gap-3 font-bold text-center'>
+      <div className='md:text-3xl text-3xl lg:text-4xl leading-10 flex flex-col gap-3 font-bold text-center'>
         <div>Rooted in Innovation,</div>
         <div>Expanding Across the Globe</div>
       </div>
@@ -226,17 +226,17 @@ const Locations = () => {
       variants={card}
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 200 }}
-      className=" rounded-2xl p-5 h-full"
+      className=" md:rounded-xl rounded-lg lg:rounded-2xl p-5 h-full"
     >
             <div
               // key={index}
-              className="bg-[#EDEDED] h-full rounded-2xl md:p-4 p-2 lg:p-6 flex md:gap-4 gap-3 lg:gap-8 hover:shadow-lg transition"
+              className="bg-[#EDEDED] h-full md:rounded-xl rounded-lg lg:rounded-2xl md:p-4 p-2 lg:p-6 flex md:gap-4 gap-3 lg:gap-8 hover:shadow-lg transition"
             >
               {/* Image */}
               <img
                 src="https://www.indium.tech/wp-content/uploads/2025/04/UNITED-STATES.png" // 👉 replace with your image path
                 alt="office"
-                className="w-40 h-40 object-cover rounded-lg"
+                className="w-40 h-40 object-cover rounded-md xl:rounded-lg"
               />
 
               {/* Content */}
