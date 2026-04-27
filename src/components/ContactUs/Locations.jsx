@@ -196,7 +196,7 @@ const Locations = () => {
     }
   }, [selectedLocation]);
   return (
-    <div className='md:px-8 lg:px-16 px-6 md:py-10 lg:py-16 py-2 flex flex-col items-center gap-9'>
+    <div className='md:px-8 lg:px-16 px-6 md:py-10 lg:py-16 py-8 flex flex-col items-center gap-9'>
       <div className='text-4xl leading-8 flex flex-col gap-3 font-bold text-center'>
         <div>Rooted in Innovation,</div>
         <div>Expanding Across the Globe</div>

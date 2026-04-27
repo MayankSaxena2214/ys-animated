@@ -35,9 +35,8 @@ const ExploreUs = () => {
         <div>Reach out today, and let's start shaping the future of your business.</div>
       </div>
 
-      <div className="relative z-10">
         <ThemeButton link="/contact-us" text="Contact" />
-      </div>
+      
 
     </div>
   )
